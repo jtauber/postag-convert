@@ -4,8 +4,8 @@ Python library for converting between various morphosyntactic tagging schemes (i
 
 No code yet, just:
 
-* initial documentation of schemes `postag-schemes.md`
-* links to or extract from previous code I've written `prior-art.md`
+* initial documentation of schemes: `postag-schemes.md`
+* links to or extracts from previous code I've written: `prior-art.md`
 
 Support also planned:
 
