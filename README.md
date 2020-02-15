@@ -6,7 +6,7 @@ Not much code yet, just:
 
 * initial documentation of schemes: `postag-schemes.md`
 * links to or extracts from previous code I've written: `prior-art.md`
-* regexes (and test data) for testing against the Robinson scheme and two variants of MorphGNT
+* regexes (and test data) for testing against the Robinson scheme and two variants of MorphGNT: run `test_parse.py`
 
 Support also planned:
 
