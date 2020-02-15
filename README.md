@@ -2,10 +2,11 @@
 
 Python library for converting between various morphosyntactic tagging schemes (initially just for Ancient Greek)
 
-No code yet, just:
+Not much code yet, just:
 
 * initial documentation of schemes: `postag-schemes.md`
 * links to or extracts from previous code I've written: `prior-art.md`
+* regexes (and test data) for testing against the Robinson scheme and two variants of MorphGNT
 
 Support also planned:
 
