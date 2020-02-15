@@ -28,11 +28,11 @@ REGEXES1 = [
     f"p{PERSON_}{NUMBER_}---{GENDER_}{CASE_}-",
 
     f"v{PERSON}{NUMBER}[-pifarlt][miso]{VOICE}---",
-    f"v--[-pafrt]n{VOICE}---",
+    f"v--[-pfart]n{VOICE}---",
     f"v-{NUMBER}[pafr]p{VOICE}{GENDER}{CASE}-",
 
     # @@@ ERRORS IN CELANO
-    
+
     "v--amm---",  # @@@ imperative without person or number
     "v-samp---",  # @@@ imperative without person
     "v-spna---",  # @@@ infinitive with number
@@ -65,4 +65,57 @@ REGEXES2 = [
     f"v[-c]{PERSON}{NUMBER}[pifarlt][miso]{VOICE}---",
     f"v[-c]--[pafrt]n{VOICE}---",
     f"v[-c]-{NUMBER}[pafr]p{VOICE}{GENDER}{CASE}-",
+]
+
+REGEXES3 = [
+    "_--------",  # @@@
+    "c-------[-_]",
+    "d-------[-_pcs]",
+    "d-p---ma-",
+    "e--------",  # @@@ what is this?
+    # @@@ no g ?
+    "i--------",
+    "r-------[-_]",
+    "r-s---fv-",  # @@@
+    "u--------",
+
+    "x-[-sp]---[-mn][-na]-",
+
+    "m-[-_p]---[-_m][-_]-",
+
+    "a-[-_sdp]---[-_fmn][-_navgd][-_pcs]",
+    "l-[-sdp]---[-fmn][-navgd]-",
+    "n-[-_sdp]---[-_fmn][_navgd][-_]",
+    "p[-123][_sdp]---[-_fmn][_navgd]-",
+
+    f"v{PERSON}{NUMBER}[-pifarlt][-miso]{VOICE}---",
+    f"v[-_][-_][pfart]n{VOICE}---",
+    f"v-{NUMBER}[pafr]p{VOICE}{GENDER}{CASE}[-_]",
+
+    "t-[sp][ap]p[ae]m[nd]-",  # @@@ what is this?
+    "v_____---",  # @@@
+
+    "v-p-pmma-",  # @@@ ERROR
+    "v--ppamg-",  # @@@ ERROR
+
+    "v--[p][i][a]---",  # @@@ ERROR
+
+    ".........-----",  # @@@ ERROR
+
+    "c2sfim---",  # @@@ ERROR
+
+    "n-s---fl-",  # @@@ what is case=l ?
+    "v--ina---",  # @@@ can't have imperfect infinitive
+    "v--pnd---",  # @@@ can't have voice=d
+    "v.[sp].n.---",  # @@@ can't have number if infinitive
+    "v.......[pc]",  # @@@ can't have verb with degree
+    "v-..g....",  # @@@ can't have mood=g
+    "v-ppmang-",  # @@@ can't have mood=m with case, etc
+    "v-s[ap]i[ae]mn-",  # @@@
+    "v-slpemn_",  # @@@
+    "v1[sp]fimf--",  # @@@
+    "v3..p....",  # @@@ participle with person
+    "v3s------",  # @@@
+    "v3said---",  # @@@
+    "v3spi----",  # @@@
 ]

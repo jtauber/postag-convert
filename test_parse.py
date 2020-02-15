@@ -8,6 +8,7 @@ from patterns.morphgnt import REGEXES as MORPHGNT_REGEXES
 from patterns.morphgnt2 import REGEXES as MORPHGNT2_REGEXES
 from patterns.morpheus import REGEXES1 as MORPHEUS1_REGEXES
 from patterns.morpheus import REGEXES2 as MORPHEUS2_REGEXES
+from patterns.morpheus import REGEXES3 as MORPHEUS3_REGEXES
 
 
 def test_parse(label, regexes, test_filename):
@@ -33,3 +34,4 @@ test_parse("morphgnt", MORPHGNT_REGEXES, "examples/morphgnt.txt")
 test_parse("morphgnt2", MORPHGNT2_REGEXES, "examples/morphgnt2.txt")
 test_parse("morpheus1", MORPHEUS1_REGEXES, "examples/morpheus-celano-shorter.txt")
 test_parse("morpheus2", MORPHEUS2_REGEXES, "examples/morpheus-celano.txt")
+test_parse("morpheus3", MORPHEUS3_REGEXES, "examples/gorman.txt")
