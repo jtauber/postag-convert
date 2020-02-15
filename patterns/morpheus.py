@@ -11,25 +11,25 @@ CASE_ = "[-navgd]"
 DEGREE_ = "[-cs]"
 
 REGEXES1 = [
-    "c--------",
-    "d--------",
-    "g--------",
-    "i--------",
-    "r--------",
-    "u--------",
+    "c--------",  # conjunction
+    "d--------",  # adverb
+    "g--------",  # particle
+    "i--------",  # interjection
+    "r--------",  # preposition
+    "u--------",  # punctuation
 
-    "x-[-sp]---[-n][-nad]-",
+    "x-[-sp]---[-n][-nad]-",  # @@@
 
-    f"m-{NUMBER_}---{GENDER_}{CASE_}-",
+    f"m-{NUMBER_}---{GENDER_}{CASE_}-",  # numeral
 
-    f"a-{NUMBER}---{GENDER_}{CASE_}{DEGREE_}",
-    f"l-{NUMBER}---{GENDER}{CASE}-",
-    f"n-{NUMBER_}---{GENDER_}{CASE_}-",
-    f"p{PERSON_}{NUMBER_}---{GENDER_}{CASE_}-",
+    f"a-{NUMBER}---{GENDER_}{CASE_}{DEGREE_}",  # adjective
+    f"l-{NUMBER}---{GENDER}{CASE}-",  # article
+    f"n-{NUMBER_}---{GENDER_}{CASE_}-",  # noun
+    f"p{PERSON_}{NUMBER_}---{GENDER_}{CASE_}-",  # pronoun
 
-    f"v{PERSON}{NUMBER}[-pifarlt][miso]{VOICE}---",
-    f"v--[-pfart]n{VOICE}---",
-    f"v-{NUMBER}[pafr]p{VOICE}{GENDER}{CASE}-",
+    f"v{PERSON}{NUMBER}[-pifarlt][miso]{VOICE}---",  # finite verb
+    f"v--[-pfart]n{VOICE}---",  # infinitive
+    f"v-{NUMBER}[pafr]p{VOICE}{GENDER}{CASE}-",  # participle
 
     # @@@ ERRORS IN CELANO
 
@@ -50,47 +50,72 @@ REGEXES1 = [
 REGEXES2 = [
     "----------",
 
-    "c---------",
-    "g[-m]--------",
-    "i---------",
-    "r---------",
+    "c---------",  # conjunction
+    "g[-m]--------",  # particle (gm = modal particle, e.g. κε)
+    "i---------",  # interjection, e.g. ὀτοτοί
+    "r---------",  # prerposition
 
+    # e- exclamation
+    # y- math term (Euclid's ΑΒΓ geometrical figures)
+
+    # adverb
+    # dd = demonstrative adverb, e.g. ταύτῃ
+    # de = proper name adverb, e.g. Ἀθήναζε
+    # di = interrogative adverb, e.g. ποῦ
+    # dr = reltive adverb, e.g. οἷ
+    # dx = indefinite adverb, e.g. που
     f"d[-deirx]-------{DEGREE_}",
 
-    f"a[-ev]-{NUMBER}---{GENDER_}{CASE}{DEGREE_}",
-    f"m--[-sp]---{GENDER_}[-nagd]-",
-    f"n[-e]-{NUMBER_}---{GENDER_}{CASE}-",
+    f"a[-ev]-{NUMBER}---{GENDER_}{CASE}{DEGREE_}",  # adjective (ae = proper adjective; av = @@@)
+    f"m--[-sp]---{GENDER_}[-nagd]-",  # numeral
+    f"n[-e]-{NUMBER_}---{GENDER_}{CASE}-",  # noun (ne = proper noun)
+
+    # no x-
+    # no l- (see pa below)
+
+    # pronoun
+    # pa = definite article (not l-)
+    # pc = reciprocal pronoun, e.g. ἀλλήλους
+    # pd = demonstrative pronoun, e.g. οὗτος
+    # pi = interrogative pronoun, e.g. τίς
+    # pk = reflexive pronoun, e.g. σεαυτόν
+    # pp = personal pronoun, e.g. με
+    # pr = relative pronoun, e.g. ὅς
+    # ps = possessive pronoun, e.g. ἐμός
+    # px = indefinite pronoun, e.g. τις
     f"p[-acdikprsx]-{NUMBER}---{GENDER_}{CASE}-",
 
-    f"v[-c]{PERSON}{NUMBER}[pifarlt][miso]{VOICE}---",
-    f"v[-c]--[pafrt]n{VOICE}---",
-    f"v[-c]-{NUMBER}[pafr]p{VOICE}{GENDER}{CASE}-",
+    f"v[-c]{PERSON}{NUMBER}[pifarlt][miso]{VOICE}---",  # finite verb
+    f"v[-c]--[pafrt]n{VOICE}---",  # infinitive
+    f"v[-c]-{NUMBER}[pafr]p{VOICE}{GENDER}{CASE}-",  # participle
 ]
 
 REGEXES3 = [
+    # @@@ what do underscores mean?
+
     "_--------",  # @@@
-    "c-------[-_]",
-    "d-------[-_pcs]",
-    "d-p---ma-",
-    "e--------",  # @@@ what is this?
+    "c-------[-_]",  # conjunction
+    "d-------[-_pcs]",  # adverb (why degree=p?)
+    "d-p---ma-",  # @@@
+    "e--------",  # exclamation
     # @@@ no g ?
-    "i--------",
-    "r-------[-_]",
+    "i--------",  # interjection
+    "r-------[-_]",  # preposition
     "r-s---fv-",  # @@@
-    "u--------",
+    "u--------",  # punctuation
 
-    "x-[-sp]---[-mn][-na]-",
+    "x-[-sp]---[-mn][-na]-",  # @@@
 
-    "m-[-_p]---[-_m][-_]-",
+    "m-[-_p]---[-_m][-_]-",  # numeral
 
-    "a-[-_sdp]---[-_fmn][-_navgd][-_pcs]",
-    "l-[-sdp]---[-fmn][-navgd]-",
-    "n-[-_sdp]---[-_fmn][_navgd][-_]",
-    "p[-123][_sdp]---[-_fmn][_navgd]-",
+    "a-[-_sdp]---[-_fmn][-_navgd][-_pcs]",  # adjective
+    "l-[-sdp]---[-fmn][-navgd]-",  # article
+    "n-[-_sdp]---[-_fmn][_navgd][-_]",  # noun
+    "p[-123][_sdp]---[-_fmn][_navgd]-",  # pronoun
 
-    f"v{PERSON}{NUMBER}[-pifarlt][-miso]{VOICE}---",
-    f"v[-_][-_][pfart]n{VOICE}---",
-    f"v-{NUMBER}[pafr]p{VOICE}{GENDER}{CASE}[-_]",
+    f"v{PERSON}{NUMBER}[-pifarlt][-miso]{VOICE}---",  # finite verb
+    f"v[-_][-_][pfart]n{VOICE}---",  # infinitive
+    f"v-{NUMBER}[pafr]p{VOICE}{GENDER}{CASE}[-_]",  # participle
 
     "t-[sp][ap]p[ae]m[nd]-",  # @@@ what is this?
     "v_____---",  # @@@
@@ -115,6 +140,7 @@ REGEXES3 = [
     "v-slpemn_",  # @@@
     "v1[sp]fimf--",  # @@@
     "v3..p....",  # @@@ participle with person
+    "v-..p-...",  # @@@ participle without a voice
     "v3s------",  # @@@
     "v3said---",  # @@@
     "v3spi----",  # @@@
