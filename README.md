@@ -14,3 +14,5 @@ Support also planned:
 * [Universal Dependencies](https://universaldependencies.org) and [universal features](https://universaldependencies.org/u/feat/index.html) and [universal parts of speech](https://universaldependencies.org/u/pos/index.html) in particular
 
 but the first priority is just consolidating my existing code.
+
+For more of my work on Ancient Greek, see <https://jktauber.com/>.
