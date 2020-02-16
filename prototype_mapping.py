@@ -131,12 +131,23 @@ for property in MAPPINGS:
             REVERSE_MAPPINGS.setdefault(scheme, {}).setdefault(property, {})[value] = node
 
 
-def map_features(d, scheme):
+def map_features(features, scheme):
     return {
         property: value
         for property, value in [
             (property,  REVERSE_MAPPINGS[scheme][property].get(value))
-            for property, value in d.items()
+            for property, value in features.items()
+        ]
+        if value
+    }
+
+
+def reverse_map_features(features, scheme):
+    return {
+        property: value
+        for property, value in [
+            (property,  MAPPINGS[property][value].get(scheme))
+            for property, value in features.items()
         ]
         if value
     }
@@ -153,11 +164,28 @@ def parse_and_map(scheme, regexes, postag):
     return map_features(d, scheme)
 
 
-def test_parse(scheme, regexes, test_filename):
+def render(scheme, features):
+    if scheme == "morphgnt2":
+        return "".join(
+            features.get(property, "-")
+            for property in [
+                "tense", "voice", "mood", "person", "case", "number", "gender"
+            ]
+        )
+
+
+def reverse_map_and_render(scheme, features):
+    return render(scheme, reverse_map_features(features, scheme))
+
+
+def test_mapping(scheme, regexes, test_filename):
     with open(test_filename) as f:
         for line in f:
             postag = line.strip()
-            print(postag, parse_and_map(scheme, regexes, postag))
+            features = parse_and_map(scheme, regexes, postag)
+            postag2 = reverse_map_and_render(scheme, features)
+            print(postag, features, postag2)
+            assert postag == postag2
 
 
-test_parse("morphgnt2", MORPHGNT2_REGEXES, "examples/morphgnt2.txt")
+test_mapping("morphgnt2", MORPHGNT2_REGEXES, "examples/morphgnt2.txt")
