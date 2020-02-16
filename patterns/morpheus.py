@@ -1,50 +1,52 @@
-PERSON = "[123]"
-PERSON_ = "[-123]"
-NUMBER = "[sdp]"
-NUMBER_ = "[-sdp]"
-VOICE = "[aemp]"
-VOICE_ = "[-aemp]"
-GENDER = "[fmn]"
-GENDER_ = "[-fmn]"
-CASE = "[navgd]"
-CASE_ = "[-navgd]"
-DEGREE_ = "[-cs]"
+PERSON = r"(?P<person>[123])"
+PERSON_ = r"(?P<person>[-123])"
+NUMBER = r"(?P<number>[sdp])"
+NUMBER_ = r"(?P<number>[-sdp])"
+VOICE = r"(?P<voice>[aemp])"
+VOICE_ = r"(?P<voice>[-aemp])"
+GENDER = r"(?P<gender>[fmn])"
+GENDER_ = r"(?P<gender>[-fmn])"
+CASE = r"(?P<case>[navgd])"
+CASE_ = r"(?P<case>[-navgd])"
+DEGREE_ = r"(?P<degree>[-cs])"
+TENSE_ = r"(?P<tense>[-pifarlt])"
+TENSE_P_ = r"(?P<tense>[-pfart])"
+MOOD_F = r"(?P<mood>[miso])"
+MOOD_N = r"(?P<mood>n)"
+MOOD_P = r"(?P<mood>p)"
+
+POS_A = r"(?P<pos>a)"  # adjective
+POS_L = r"(?P<pos>l)"  # article
+POS_M = r"(?P<pos>m)"  # numeral
+POS_N = r"(?P<pos>n)"  # noun
+POS_P = r"(?P<pos>p)"  # pronoun
+POS_V = r"(?P<pos>v)"  # verb
+POS_X = r"(?P<pos>x)"  # ???
+
+# c: conjunction
+# d: adverb
+# g: particle
+# i: interjection
+# r: preposition
+# u: punctuation
+POS_INDECL = r"(?P<pos>[cdgiru])"
 
 REGEXES1 = [
-    "c--------",  # conjunction
-    "d--------",  # adverb
-    "g--------",  # particle
-    "i--------",  # interjection
-    "r--------",  # preposition
-    "u--------",  # punctuation
+    f"{POS_INDECL}--------",
 
-    "x-[-sp]---[-n][-nad]-",  # @@@
+    f"{POS_X}-{NUMBER_}---{GENDER_}{CASE_}-",  # ???
+    f"{POS_M}-{NUMBER_}---{GENDER_}{CASE_}-",  # numeral
+    f"{POS_N}-{NUMBER_}---{GENDER_}{CASE_}-",  # noun
 
-    f"m-{NUMBER_}---{GENDER_}{CASE_}-",  # numeral
+    f"{POS_L}-{NUMBER}---{GENDER}{CASE}-",  # article
 
-    f"a-{NUMBER}---{GENDER_}{CASE_}{DEGREE_}",  # adjective
-    f"l-{NUMBER}---{GENDER}{CASE}-",  # article
-    f"n-{NUMBER_}---{GENDER_}{CASE_}-",  # noun
-    f"p{PERSON_}{NUMBER_}---{GENDER_}{CASE_}-",  # pronoun
+    f"{POS_A}-{NUMBER}---{GENDER_}{CASE_}{DEGREE_}",  # adjective
 
-    f"v{PERSON}{NUMBER}[-pifarlt][miso]{VOICE}---",  # finite verb
-    f"v--[-pfart]n{VOICE}---",  # infinitive
-    f"v-{NUMBER}[pafr]p{VOICE}{GENDER}{CASE}-",  # participle
+    f"{POS_P}{PERSON_}{NUMBER_}---{GENDER_}{CASE_}-",  # pronoun
 
-    # @@@ ERRORS IN CELANO
-
-    "v--amm---",  # @@@ imperative without person or number
-    "v-samp---",  # @@@ imperative without person
-    "v-spna---",  # @@@ infinitive with number
-    "v3s------",  # @@@ person-number but nothing else
-    "v3said---",  # @@@ what is voice=d?
-    "v--pnd---",  # @@@ what is voice=d?
-
-    "v-[sp][ap]p-mn-",  # @@@ participle missing voice
-    "v-sapa-a-",  # @@@ participle missing gender
-    "v--[ar]n----",  # @@@ infinitive missing voice
-    "v3-roe---",  # @@@ finite verb missing number
-    "v[123][sp][ifa][io]----",  # @@@ finite verb missing voice
+    f"{POS_V}{PERSON}{NUMBER}{TENSE_}{MOOD_F}{VOICE}---",  # finite verb
+    f"{POS_V}--{TENSE_P_}{MOOD_N}{VOICE}---",  # infinitive
+    f"{POS_V}-{NUMBER}{TENSE_P_}{MOOD_P}{VOICE}{GENDER}{CASE}-",  # participle
 ]
 
 REGEXES2 = [
