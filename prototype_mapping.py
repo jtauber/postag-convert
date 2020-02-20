@@ -3,11 +3,13 @@
 import glob
 import re
 
+from patterns.morphgnt import REGEXES as MORPHGNT1_REGEXES
 from patterns.morphgnt2 import REGEXES as MORPHGNT2_REGEXES
 from patterns.morpheus import REGEXES1 as MORPHEUS1_REGEXES
 
 
 REGEXES = {
+    "morphgnt1": MORPHGNT1_REGEXES,
     "morphgnt2": MORPHGNT2_REGEXES,
     "morpheus1": MORPHEUS1_REGEXES,
 }
@@ -17,9 +19,11 @@ MAPPINGS = {
     "pos": {
         1: {  # adjective
             "morpheus1": ("a", True),
+            "morphgnt1": ("A", True),
         },
         2: {  # conjunction
             "morpheus1": ("c", True),
+            "morphgnt1": ("C", True),
         },
         3: {  # adverb
             "morpheus1": ("d", True),
@@ -57,22 +61,27 @@ MAPPINGS = {
     },
     "case": {
         1: {  # nominative
+            "morphgnt1": ("N", True),
             "morphgnt2": ("N", True),
             "morpheus1": ("n", True),
         },
         2: {  # accusative
+            "morphgnt1": ("A", True),
             "morphgnt2": ("A", True),
             "morpheus1": ("a", True),
         },
         3: {  # vocative
+            "morphgnt1": ("V", True),
             "morphgnt2": ("V", True),
             "morpheus1": ("v", True),
         },
         4: {  # genitive
+            "morphgnt1": ("G", True),
             "morphgnt2": ("G", True),
             "morpheus1": ("g", True),
         },
         5: {  # dative
+            "morphgnt1": ("D", True),
             "morphgnt2": ("D", True),
             "morpheus1": ("d", True),
         },
@@ -84,14 +93,17 @@ MAPPINGS = {
     },
     "gender": {
         1: {  # feminine
+            "morphgnt1": ("F", True),
             "morphgnt2": ("F", True),
             "morpheus1": ("f", True),
         },
         2: {  # masculine
+            "morphgnt1": ("M", True),
             "morphgnt2": ("M", True),
             "morpheus1": ("m", True),
         },
         3: {  # neuter
+            "morphgnt1": ("N", True),
             "morphgnt2": ("N", True),
             "morpheus1": ("n", True),
         },
@@ -107,6 +119,7 @@ MAPPINGS = {
     },
     "number": {
         1: {  # singular
+            "morphgnt1": ("S", True),
             "morphgnt2": ("S", True),
             "morpheus1": ("s", True),
         },
@@ -114,64 +127,78 @@ MAPPINGS = {
             "morpheus1": ("d", True),
         },
         3: {  # plural
+            "morphgnt1": ("P", True),
             "morphgnt2": ("P", True),
             "morpheus1": ("p", True),
         },
     },
     "person": {
         1: {  # first
+            "morphgnt1": ("1", True),
             "morphgnt2": ("1", True),
             "morpheus1": ("1", True),
         },
         2: {  # second
+            "morphgnt1": ("2", True),
             "morphgnt2": ("2", True),
             "morpheus1": ("2", True),
         },
         3: {  # third
+            "morphgnt1": ("3", True),
             "morphgnt2": ("3", True),
             "morpheus1": ("3", True),
         },
     },
     "voice": {
         1: {  # active
+            "morphgnt1": ("A", True),
             "morphgnt2": ("A", True),
             "morpheus1": ("a", True),
         },
         2: {  # middle ("MP1")
+            "morphgnt1": ("M", True),
             "morphgnt2": ("M", True),
             "morpheus1": ("m", True),
         },
         3: {  # "passive" ("MP2")
+            "morphgnt1": ("P", True),
             "morphgnt2": ("P", True),
             "morpheus1": ("p", True),
         },
         4: {
             "morpheus1": ("e", True),
+            "morphgnt1": ("M", True),
             "morphgnt2": ("M", False),
         }
     },
     "tense": {
         1: {  # present
+            "morphgnt1": ("P", True),
             "morphgnt2": ("P", True),
             "morpheus1": ("p", True),
         },
         2: {  # imperfect
+            "morphgnt1": ("I", True),
             "morphgnt2": ("I", True),
             "morpheus1": ("i", True),
         },
         3: {  # future
+            "morphgnt1": ("F", True),
             "morphgnt2": ("F", True),
             "morpheus1": ("f", True),
         },
         4: {  # aorist
+            "morphgnt1": ("A", True),
             "morphgnt2": ("A", True),
             "morpheus1": ("a", True),
         },
         5: {  # perfect
+            "morphgnt1": ("X", True),
             "morphgnt2": ("X", True),
             "morpheus1": ("r", True),
         },
         6: {  # pluperfect
+            "morphgnt1": ("Y", True),
             "morphgnt2": ("Y", True),
             "morpheus1": ("l", True),
         },
@@ -181,26 +208,32 @@ MAPPINGS = {
     },
     "mood": {
         1: {  # indicative
+            "morphgnt1": ("I", True),
             "morphgnt2": ("I", True),
             "morpheus1": ("i", True),
         },
         2: {  # imperative
+            "morphgnt1": ("D", True),
             "morphgnt2": ("D", True),
             "morpheus1": ("m", True),
         },
         3: {  # subjunctive
+            "morphgnt1": ("S", True),
             "morphgnt2": ("S", True),
             "morpheus1": ("s", True),
         },
         4: {  # optative
+            "morphgnt1": ("O", True),
             "morphgnt2": ("O", True),
             "morpheus1": ("o", True),
         },
         5: {  # infinitive
+            "morphgnt1": ("N", True),
             "morphgnt2": ("N", True),
             "morpheus1": ("n", True),
         },
         6: {  # participle
+            "morphgnt1": ("P", True),
             "morphgnt2": ("P", True),
             "morpheus1": ("p", True),
         },
@@ -208,9 +241,11 @@ MAPPINGS = {
     "degree": {
         1: {  # comparative
             "morpheus1": ("c", True),
+            "morphgnt1": ("C", True),
         },
         2: {  # superlative
             "morpheus1": ("s", True),
+            "morphgnt1": ("S", True),
         },
     }
 }
@@ -288,5 +323,6 @@ def test_mapping(test_filename, scheme_in, scheme_out):
             print(postag, features, postag2)
 
 
-test_mapping("examples/morphgnt2.txt", "morphgnt2", "morpheus1")
-test_mapping("examples/morpheus-celano-shorter.txt", "morpheus1", "morphgnt2")
+# test_mapping("examples/morphgnt2.txt", "morphgnt2", "morpheus1")
+# test_mapping("examples/morpheus-celano-shorter.txt", "morpheus1", "morphgnt2")
+test_mapping("examples/morphgnt.txt", "morphgnt1", "morphgnt2")
